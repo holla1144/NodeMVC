@@ -1,0 +1,5 @@
+article.card
+    .card-body
+        h2: a(href=`/note/${note.slug}`)= note.title
+        small Published on #{note.date}
+        p= note.content

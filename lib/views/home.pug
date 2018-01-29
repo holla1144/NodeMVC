@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    header(container).container
+        h1 Notes Board
+        
+        nav
+            ul.nav
+                li.nav-item
+                    a.nav-link(data-toggle="modal" data-target="#add-modal") Publish
+
+    main(container).notes-list.container
+        each note in data.notes
+            include components/note
+
+    .modal.modal-dialog.modal-dialog-centered.fade#add-modal
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5.modal-title Add
+                    button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                    span(aria-hidden="true") &times;
+
+
+                form(action='/note' method='POST').note-form#note-form
+                    .modal-body
+                        p: input(name='noteTitle' type='text' placeholder='Title')
+                        p: input(name='noteDescription' type='text' placeholder='Short description')
+                        p: textarea(name='noteContent' placeholder='Content goes here')
+                    .modal-footer
+                        button(type="button" class="btn btn-secondary" data-dismiss='modal') Close
+                        input(type='submit' class='btn btn-primary' value='Submit')
+
+        
+
+
